@@ -1,0 +1,11 @@
+---
+sal::firewall::multicast_cidr: '239.255.0.1/32'
+sal::firewall::omgdds_ports:
+  - '7400-32399'
+  - '32768-65535'
+sal::firewall::omgdds_subnets:
+  'localhost': '127.0.0.1/32'
+sal::firewall::opensplice_ports: '250-251'
+sal::firewall::opensplice_subnets:
+  'localhost': '127.0.0.1/32'
+
