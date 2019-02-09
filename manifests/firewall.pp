@@ -19,29 +19,29 @@ class sal::firewall  (
   $opensplice_subnets,
 ) {
 
-  firewall { "003 allow multicast via ip input":
+  firewall { '003 allow multicast via ip input':
     chain  => 'INPUT',
     proto  => all,
-    source => "$multicast_cidr",
+    source => $multicast_cidr,
     action => accept,
   }
-  firewall { "003 allow multicast via ip forward":
+  firewall { '003 allow multicast via ip forward':
     chain       => 'FORWARD',
     proto       => all,
-    source      => "$multicast_cidr",
-    destination => "$multicast_cidr",
+    source      => $multicast_cidr,
+    destination => $multicast_cidr,
     action      => accept,
   }
-  firewall { "003 allow multicast via ip output":
+  firewall { '003 allow multicast via ip output':
     chain       => 'OUTPUT',
     proto       => all,
-    destination => "$multicast_cidr",
+    destination => $multicast_cidr,
     action      => accept,
   }
 
   $omgdds_subnets.each | $location, $source_cidr |
   {
-    firewall { "003 allow OMG DDS multicast/unicast via ip input from $location":
+    firewall { "003 allow OMG DDS multicast/unicast via ip input from ${location}":
       chain  => 'INPUT',
       proto  => udp,
       dport  => $omgdds_ports,
@@ -52,11 +52,11 @@ class sal::firewall  (
 
   $opensplice_subnets.each | $location, $source_cidr |
   {
-    firewall { "003 allow SAL OpenSlice via ip input from $location":
+    firewall { "003 allow SAL OpenSlice via ip input from ${location}":
       chain  => 'INPUT',
       proto  => udp,
       dport  => $opensplice_ports,
-      source => "$source_cidr",
+      source => $source_cidr,
       action => accept,
     }
   }
