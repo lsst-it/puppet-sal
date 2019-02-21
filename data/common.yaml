@@ -9,3 +9,5 @@ sal::firewall::opensplice_ports: '250-251'
 sal::firewall::opensplice_subnets:
   'localhost': '127.0.0.1/32'
 
+sal::install::version: '3.8.41'
+
