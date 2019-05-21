@@ -27,9 +27,15 @@ The module installs prerequisites, installs the SAL software, and configures fir
 
 ### Setup Requirements
 
+The following parameters must be defined:
+
+  * `sal::install::environment_baseurl` - String of URL for source of SAL environment file
+  * `sal::install::yumrepo_baseurl` - String of yum repository baseurl containing OpenSpliceDDS package
+
 This module requires the following puppet modules to be installed:
-* https://forge.puppet.com/puppetlabs/firewall
-* https://forge.puppet.com/puppetlabs/stdlib
+
+  * https://forge.puppet.com/puppetlabs/firewall
+  * https://forge.puppet.com/puppetlabs/stdlib
 
 ### Beginning with sal
 

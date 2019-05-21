@@ -9,8 +9,6 @@ sal::firewall::opensplice_ports: '250-251'
 sal::firewall::opensplice_subnets:
   'localhost': '127.0.0.1/32'
 
-sal::install::environment_baseurl: 'https://lsst-web.ncsa.illinois.edu/~felipe/packages/setup_SAL.env'
 sal::install::environment_file: '/opt/lsst/setup_SAL.env'
 sal::install::version: '6.9.0'
-sal::install::yumrepo_baseurl: 'https://lsst-web.ncsa.illinois.edu/~felipe/packages/lsst-ts.repo'
 
