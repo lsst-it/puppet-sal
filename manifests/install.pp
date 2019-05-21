@@ -5,21 +5,36 @@
 # @example
 #   include sal::install
 class sal::install (
+    String   $environment_baseurl,
+    String   $environment_file,
+    String   $package,
     String   $version,
+    String   $yumrepo_baseurl,
 ) {
 
-## WHY WOULDN'T WE GRAB DIRECTLY FROM GITHUB REPO?
-# 1) CHECK TO SEE IF SPECIFIED $version OF SAL IS AT /opt/sal-$version AND /opt/sal-home LINKS TO IT
-# 2) FETCH $version FROM https://github.com/lsst-ts/ts_sal/archive/v$version.tar.gz
-# 3) cd /opt/sal-$version && tar xfz v$version.tar.gz
-# 4) ADD source /opt/sal-$version/setup_SAL.env TO BASH LOGIN PROFILE
-# 5) WHEN DONE, SYMLINK /opt/sal-home TO /opt/sal-$version
+  ## SETUP SAL YUM REPO
+  yumrepo { 'lsst-ts-sal':
+    ensure   => present,
+    baseurl  => $yumrepo_baseurl,
+    descr    => 'LSST TS-SAL',
+    enabled  => 1,
+    gpgcheck => 0,
+  }
+  
+  ## INSTALL SAL/OPENSPLICE PACKAGE
+  # OpenSpliceDDS-6.9.0
+  package { $package:
+    ensure => $version,
+    require => [
+      Yumrepo['lsst-ts-sal'],
+    ],
+  }
 
-## OR WITH NCSA MAINTAINED TARBALL
-# 1) CHECK IF /opt/sal-home EXISTS
-# 2) CHECK IF /opt/sal-home IS $version
-# 3) wget http://xxxxx/sal-home-v$version.tar
-# 4) cd /opt && tar xvf sal-home-v3.8.41.tar
-# 5) ADD source /opt/sal-home/setup_SAL.env TO BASH LOGIN PROFILE
+  ## GET THE SAL ENVIRONMENT SETUP
+  file { $environment_file:
+    source => $environment_baseurl,
+  }
+
+  ## ADD source /opt/sal-home/setup_SAL.env TO BASH LOGIN PROFILE  ??
 
 }

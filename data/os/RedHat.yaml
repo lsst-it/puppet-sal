@@ -1,7 +1,6 @@
 ---
+sal::install::package: OpenSpliceDDS
+
 sal::prerequisites::pkg_list:
-    - bison
-    - java-1.8.0-openjdk-headless
-    - python36
-    - python36-libs
+  - java-1.8.0-openjdk-headless
 
