@@ -37,6 +37,10 @@ This module requires the following puppet modules to be installed:
 
 To use load the SAL puppet module, declare this class in your manifest with `include sal`.
 
+The firewall settings for SAL are somewhat complicated. It makes use of multicast/unicast networking that is a bit tricky to figure out. You'll likely need to refer to some of the following documentation on how to configure the `sal::firewall` parameters in a particular environment:
+* https://community.rti.com/content/forum-topic/statically-configure-firewall-let-omg-dds-traffic-through
+* https://github.com/lsst-ts/ts_sal/blob/develop/lsstsal/doc/SAL_User_Guide.pdf
+
 ## Reference
 
 The following parameters let you extend SAL options beyond the default:
