@@ -5,7 +5,7 @@
 # @example
 #   include sal
 class sal {
-  include prerequisites
-  include install
-  include firewall
+  include sal::prerequisites
+  include sal::install
+  include sal::firewall
 }
