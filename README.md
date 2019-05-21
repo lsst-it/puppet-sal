@@ -10,11 +10,10 @@
     * [Beginning with sal](#beginning-with-sal)
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Limitations - OS compatibility, etc.](#limitations)
-5. [Development - Guide for contributing to the module](#development)
 
 ## Description
 
-Puppet module for installing and configuring the LSST Service Abstraction Layer (SAL). The module installs prerequisites, builds the SAL software, and configures firewall settings.
+Puppet module for installing and configuring the LSST Service Abstraction Layer (SAL).
 
 For more information about the LSST SAL software, see the following:
 * https://github.com/lsst-ts/ts_sal/
@@ -22,15 +21,9 @@ For more information about the LSST SAL software, see the following:
 
 ## Setup
 
-### What sal affects **OPTIONAL**
+### What sal affects
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
-
-If there's more that they should know about, though, this is the place to mention:
-
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
+The module installs prerequisites, installs the SAL software, and configures firewall settings.
 
 ### Setup Requirements
 
@@ -40,47 +33,27 @@ This module requires the following puppet modules to be installed:
 
 ### Beginning with sal
 
-The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
-
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
+To use load the SAL puppet module, declare this class in your manifest with `include sal`.
 
 ## Reference
 
-This section is deprecated. Instead, add reference information to your code as Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your module. For details on how to add code comments and generate documentation with Strings, see the Puppet Strings [documentation](https://puppet.com/docs/puppet/latest/puppet_strings.html) and [style guide](https://puppet.com/docs/puppet/latest/puppet_strings_style.html)
+The following parameters let you extend Python3 options beyond the default:
 
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the root of your module directory and list out each of your module's classes, defined types, facts, functions, Puppet tasks, task plans, and resource types and providers, along with the parameters for each.
-
-For each element (class, defined type, function, and so on), list:
-
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
-
-For example:
-
-```
-### `pet::cat`
-
-#### Parameters
-
-##### `meow`
-
-Enables vocalization in your cat. Valid options: 'string'.
-
-Default: 'medium-loud'.
-```
+  * `sal::firewall::multicast_cidr` - String of CIDR address notation for multicast firewall rules
+  * `sal::firewall::omgdds_ports` - Array of OMG DDS ports opened up in firewall rules
+  * `sal::firewall::omgdds_subnets` - Hash of subnets that can send OMG DDS traffic
+  * `sal::firewall::opensplice_ports` - String of OpenSplice ports opened up in firewall rules
+  * `sal::firewall::opensplice_subnets` - Hash of subnets that can send OpenSplice traffic
+  * `sal::install::environment_baseurl` - String of URL for source of SAL environment file
+  * `sal::install::environment_file` - String of local filename of SAL environment file
+  * `sal::install::package` - String of package name of default OpenSpliceDDS package
+  * `sal::install::version` - String of version number of default OpenSpliceDDS package
+  * `sal::install::yumrepo_baseurl` - String of yum repository baseurl containing OpenSpliceDDS package
+  * `sal::prerequisites::pkg_list` - Array of packages to install as prerequisites
 
 ## Limitations
 
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
+This SAL module only supports RHEL/CentOS servers that are configured to use `iptables`.
 
-## Development
-
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.

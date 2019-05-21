@@ -22,7 +22,6 @@ class sal::install (
   }
   
   ## INSTALL SAL/OPENSPLICE PACKAGE
-  # OpenSpliceDDS-6.9.0
   package { $package:
     ensure => $version,
     require => [
@@ -34,7 +33,5 @@ class sal::install (
   file { $environment_file:
     source => $environment_baseurl,
   }
-
-  ## ADD source /opt/sal-home/setup_SAL.env TO BASH LOGIN PROFILE  ??
 
 }
