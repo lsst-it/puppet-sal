@@ -30,6 +30,18 @@ class sal::install (
   }
 
   ## GET THE SAL ENVIRONMENT SETUP
+  # Ensure parents of $environment_file exist, if needed (excluding / )
+  $dirparts = reject( split( "${environment_file}", '/' ), '^$' )
+  $numparts = size( $dirparts )
+  if ( $numparts > 1 ) {
+    each( Integer[2,$numparts] ) |$i| {
+      ensure_resource(
+        'file',
+        reduce( Integer[2,$i], $name ) |$memo, $val| { dirname( $memo ) },
+        { 'ensure' => 'directory' }
+      )
+    }
+  }
   file { $environment_file:
     source => $environment_baseurl,
   }
