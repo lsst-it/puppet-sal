@@ -39,7 +39,7 @@ To use load the SAL puppet module, declare this class in your manifest with `inc
 
 ## Reference
 
-The following parameters let you extend Python3 options beyond the default:
+The following parameters let you extend SAL options beyond the default:
 
   * `sal::firewall::multicast_cidr` - String of CIDR address notation for multicast firewall rules
   * `sal::firewall::omgdds_ports` - Array of OMG DDS ports opened up in firewall rules
