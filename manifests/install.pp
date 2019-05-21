@@ -37,7 +37,7 @@ class sal::install (
     each( Integer[2,$numparts] ) |$i| {
       ensure_resource(
         'file',
-        reduce( Integer[2,$i], $name ) |$memo, $val| { dirname( $memo ) },
+        reduce( Integer[2,$i], $environment_file) |$memo, $val| { dirname( $memo ) },
         { 'ensure' => 'directory' }
       )
     }
