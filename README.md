@@ -63,6 +63,7 @@ The following parameters let you extend SAL options beyond the default:
   * `sal::install::opensplice_packages` - Array of package names of OpenSpliceDDS package(s)
   * `sal::install::opensplice_version` - String of version number of OpenSpliceDDS package
   * `sal::install::yumrepo_baseurl` - String of yum repository baseurl containing OpenSpliceDDS package
+  * `sal::prerequisites::fitsio_tar_url` - String of URL where the fitsio .tar.gz file can be downloaded
   * `sal::prerequisites::pkg_list` - Array of packages to install as prerequisites
 
 ## Limitations
