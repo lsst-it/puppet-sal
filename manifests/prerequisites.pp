@@ -17,7 +17,7 @@ class sal::prerequisites (
   exec { "download_fitsio":
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     unless  => "find /root -type d | grep -i $fits_name",
-#    creates => "/root/$fits_name",
+#    creates => "/root/fitsio-$fits_name",
     cwd     => "/root",
     command => "wget -O $fits_tarball $fitsio_tar_url  &&  tar xfz $fits_tarball  &&  rm -f $fits_tarball",
     require => [
@@ -27,8 +27,8 @@ class sal::prerequisites (
   exec { "install_fitsio":
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     unless  => "find /usr/lib64/ -type d | grep $fits_name",
-#    creates => "/usr/lib64/python3.6/site-packages/$fits_name-py3.6-linux-x86_64.egg",
-    cwd     => "/root/$fits_name",
+#    creates => "/usr/lib64/python3.6/site-packages/fitsio-$fits_name-py3.6-linux-x86_64.egg",
+    cwd     => "/root/fitsio-$fits_name",
     command => "python3 setup.py install --prefix=/usr",
     require => [
       Exec['download_fitsio'],
