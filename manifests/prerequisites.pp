@@ -14,7 +14,7 @@ class sal::prerequisites (
 
   $fits_tarball = basename($fitsio_tar_url)
   $fits_name = basename($fitsio_tar_url, 'tar.gz')
-  exec { "download_fitsio_tar":
+  exec { "download_fitsio":
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     unless  => "find /root -type d | grep -i $fits_name",
 #    creates => "/root/$fits_name",
