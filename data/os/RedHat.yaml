@@ -18,5 +18,6 @@ sal::prerequisites::pkg_list:
   - boost-python
   - boost-python-devel
   - cfitsio
+  - gcc
   - java-1.8.0-openjdk-headless
 
