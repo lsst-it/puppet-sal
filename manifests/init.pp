@@ -5,6 +5,7 @@
 # @example
 #   include sal
 class sal {
+  include ::python3
   include sal::prerequisites
   include sal::install
   include sal::firewall

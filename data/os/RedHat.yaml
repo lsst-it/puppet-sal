@@ -1,6 +1,22 @@
 ---
-sal::install::package: OpenSpliceDDS
+sal::install::csc_packages:
+  - ATHeaderService
+  - ATCamera
+  - ATArchiver
+  - EFD
+  - Scheduler
+  - ATPtg
+  - ATMCS
+  - ATSpectrograph
+  - ATTCS
+sal::install::openslice_packages:
+  - OpenSpliceDDS
 
 sal::prerequisites::pkg_list:
+  - bison
+  - boost
+  - boost-python
+  - boost-python-devel
+  - cfitsio
   - java-1.8.0-openjdk-headless
 

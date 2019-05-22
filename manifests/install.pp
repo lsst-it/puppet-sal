@@ -5,29 +5,34 @@
 # @example
 #   include sal::install
 class sal::install (
-    String   $environment_baseurl,
-    String   $environment_file,
-    String   $package,
-    String   $version,
-    String   $yumrepo_baseurl,
+  String              $environment_file,
+  Array[String[1], 1] $csc_packages,
+  String              $csc_version,
+  Array[String[1], 1] $openslice_packages,
+  String              $openslice_version,
+  String              $yumrepo_baseurl,
 ) {
 
   ## SETUP SAL YUM REPO
-  yumrepo { 'lsst-ts-sal':
+  yumrepo { 'lsst-ts':
     ensure   => present,
     baseurl  => $yumrepo_baseurl,
-    descr    => 'LSST TS-SAL',
+    descr    => 'LSST Telescope and Site packages',
     enabled  => 1,
     gpgcheck => 0,
   }
-  
-  ## INSTALL SAL/OPENSPLICE PACKAGE
-  package { $package:
-    ensure => $version,
+
+  Package {
     require => [
-      Yumrepo['lsst-ts-sal'],
+      Yumrepo['lsst-ts'],
     ],
-  }
+  }  
+
+  ## INSTALL OPENSPLICE PACKAGES
+  ensure_packages( $openslice_packages, {'ensure' => $openslice_version} )
+
+  ## INSTALL SAL CSC PACKAGES
+  ensure_packages( $csc_packages, {'ensure' => $csc_version} )
 
   ## GET THE SAL ENVIRONMENT SETUP
   # Ensure parents of $environment_file exist, if needed (excluding / )
@@ -43,7 +48,8 @@ class sal::install (
     }
   }
   file { $environment_file:
-    source => $environment_baseurl,
+    source => "puppet:///modules/${module_name}/opt/lsst/setup_SAL.env",
+    mode => '644',
   }
 
 }
