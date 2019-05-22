@@ -13,3 +13,4 @@ sal::install::environment_file: '/opt/lsst/setup_SAL.env'
 sal::install::csc_version: '3.9.2'
 sal::install::openslice_version: '6.9.0'
 
+sal::prerequisites::fitsio_tar_url: 'https://github.com/menanteau/fitsio/archive/DMHSv0.1.tar.gz''

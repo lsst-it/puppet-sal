@@ -24,7 +24,6 @@ class sal::prerequisites (
       Package['wget'],
     ],
   }
-
   exec { "install_fitsio":
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     unless  => "find /usr/lib64/ -type d | grep $fits_name",
