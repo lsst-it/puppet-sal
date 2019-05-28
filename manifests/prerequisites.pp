@@ -23,8 +23,10 @@ class sal::prerequisites (
     require => [
       Package['wget'],
     ],
+    notify => Exec['install_fitsio'],
   }
   exec { "install_fitsio":
+    refreshonly => true,
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     unless  => 'find /usr/lib64/ -type d | grep fitsio',
 #    creates => "/usr/lib64/python3.6/site-packages/fitsio-$fits_name-py3.6-linux-x86_64.egg",
