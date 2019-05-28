@@ -13,7 +13,7 @@ class sal::prerequisites (
 
 
   $fits_tarball = basename($fitsio_tar_url)
-  $fits_name = regsubst(basename($fitsio_tar_url, '.tar.gz'), '\w+', '\\1')
+  $fits_name = regsubst(basename($fitsio_tar_url, '.tar.gz'), '[A-Za-z]', '\\1')
   exec { "download_fitsio":
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
 #    unless  => "find /root -type d | grep -i $fits_name",
