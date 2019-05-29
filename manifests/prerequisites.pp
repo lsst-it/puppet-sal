@@ -28,7 +28,7 @@ class sal::prerequisites (
     refreshonly => true,
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     cwd     => "/root/fitsio-$fits_name",
-    command => 'rm -rf /usr/lib64/python3.6/site-packages/fitsio-* && python3 setup.py install --prefix=/usr',
+    command => 'pip uninstall -y fitsio && python3 setup.py install --prefix=/usr',
     require => [
       Exec['download_fitsio'],
     ],
