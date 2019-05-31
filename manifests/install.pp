@@ -25,8 +25,20 @@ class sal::install (
   Package {
     require => [
       Yumrepo['lsst-ts'],
+      Exec['uninstall old SAL packages'],
     ],
   }  
+
+  ## IF CHANGING VERSION OF CURRENTLY INSTALLED WE NEED TO FIRST UNINSTALL
+  exec { 'uninstall old SAL packages':
+    unless  => "yum list installed | grep @lsst-ts | grep '$openslice_version' && yum list installed | grep @lsst-ts | grep '$csc_version'",
+    path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
+    cwd     => '/',
+    command => 'yum -y remove `yum list installed | grep @lsst-ts | awk \'{ print \$1 }\'`',
+    require => [
+      Yumrepo['lsst-ts'],
+    ],
+  }
 
   ## INSTALL OPENSPLICE PACKAGES
   ensure_packages( $openslice_packages, {'ensure' => $openslice_version} )
