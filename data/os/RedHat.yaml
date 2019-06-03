@@ -9,6 +9,9 @@ sal::install::csc_packages:
   - ATMCS
   - ATSpectrograph
   - ATTCS
+  - CatchupArchiver
+  - MTArchiver
+  - PromptProcessing
 sal::install::openslice_packages:
   - OpenSpliceDDS
 
