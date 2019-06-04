@@ -1,8 +1,4 @@
 ---
-python3::pip_packages:
-  'fitsio':
-    ensure: '1.0.4'
-
 sal::firewall::multicast_cidr: '239.255.0.1/32'
 sal::firewall::omgdds_ports:
   - '7400-32399'
