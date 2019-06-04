@@ -31,7 +31,7 @@ class sal::install (
 
   ## IF CHANGING VERSION OF CURRENTLY INSTALLED WE NEED TO FIRST UNINSTALL
   exec { 'uninstall old SAL packages':
-    unless  => "yum list installed | grep @lsst-ts | grep '$openslice_version' && yum list installed | grep @lsst-ts | grep '$csc_version'",
+    unless  => "! (yum list installed | grep @lsst-ts) && yum list installed | grep @lsst-ts | grep '$openslice_version' && yum list installed | grep @lsst-ts | grep '$csc_version'",
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     cwd     => '/',
     command => 'yum -y remove `yum list installed | grep @lsst-ts | awk \'{ print \$1 }\'`',
