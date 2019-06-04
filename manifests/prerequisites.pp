@@ -39,6 +39,7 @@ class sal::prerequisites (
     refreshonly => true,
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     cwd     => "/root/fitsio-$fits_name",
+    unless  => 'pip list | grep fitsio',
     command => 'python3 setup.py install --prefix=/usr',
     require => [
       Exec['download_fitsio'],
