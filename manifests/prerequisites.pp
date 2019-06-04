@@ -6,10 +6,12 @@
 #   include sal::prerequisites
 class sal::prerequisites (
   Array[String[1], 1] $pkg_list,
-  String              $fitsio_tar_url,
+  Hash $pip_packages,
 ) {
 
   ensure_packages( $pkg_list, {'ensure' => 'present'} )
+
+  ensure_resources('package', $pip_packages, {'provider' => 'pip3', })
 
 #  $fits_tarball = basename($fitsio_tar_url)
 #  $fits_name = regsubst(basename($fitsio_tar_url, '.tar.gz'), '[A-Za-z]', '\\1')

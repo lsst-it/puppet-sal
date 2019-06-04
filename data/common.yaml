@@ -17,4 +17,7 @@ sal::install::environment_file: '/opt/lsst/setup_SAL.env'
 sal::install::csc_version: '3.10.0_001'
 sal::install::openslice_version: '6.9.0'
 
-sal::prerequisites::fitsio_tar_url: 'https://github.com/esheldon/fitsio/archive/v1.0.4.tar.gz'
+sal::prerequisites::pip_packages:
+  'fitsio':
+    ensure: '1.0.4'
+
