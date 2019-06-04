@@ -34,6 +34,7 @@ class sal::prerequisites (
     require => [
       Exec['download_fitsio'],
     ],
+  }
   exec { "install_fitsio":
     refreshonly => true,
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
