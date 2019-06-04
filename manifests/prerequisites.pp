@@ -29,8 +29,8 @@ class sal::prerequisites (
   exec { "uninstall_old_fitsio":
     refreshonly => true,
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
-    onlyif  => 'pip list | grep fitsio,
-    command => 'pip uninstall -y fitsio,
+    onlyif  => 'pip list | grep fitsio',
+    command => 'pip uninstall -y fitsio',
     require => [
       Exec['download_fitsio'],
     ],
