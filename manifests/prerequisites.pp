@@ -11,7 +11,6 @@ class sal::prerequisites (
 
   ensure_packages( $pkg_list, {'ensure' => 'present'} )
 
-
   $fits_tarball = basename($fitsio_tar_url)
   $fits_name = regsubst(basename($fitsio_tar_url, '.tar.gz'), '[A-Za-z]', '\\1')
   exec { "download_fitsio":
@@ -22,15 +21,27 @@ class sal::prerequisites (
     require => [
       Package['wget'],
     ],
-    notify => Exec['install_fitsio'],
+    notify => [
+      Exec['uninstall_old_fitsio'],
+      Exec['install_fitsio'],
+    ]
   }
+  exec { "uninstall_old_fitsio":
+    refreshonly => true,
+    path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
+    onlyif  => 'pip list | grep fitsio,
+    command => 'pip uninstall -y fitsio,
+    require => [
+      Exec['download_fitsio'],
+    ],
   exec { "install_fitsio":
     refreshonly => true,
     path    => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     cwd     => "/root/fitsio-$fits_name",
-    command => 'pip uninstall -y fitsio && python3 setup.py install --prefix=/usr',
+    command => 'python3 setup.py install --prefix=/usr',
     require => [
       Exec['download_fitsio'],
+      Exec['uninstall_old_fitsio'],
     ],
   }
 
