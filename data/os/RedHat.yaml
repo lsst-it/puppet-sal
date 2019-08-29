@@ -1,17 +1,18 @@
 ---
 sal::install::csc_packages:
-  - ATHeaderService
-  - ATCamera
   - ATArchiver
-  - EFD
-  - Scheduler
-  - ATPtg
+  - ATCamera
+  - ATHeaderService
+  - ATHexapod
   - ATMCS
+  - ATPtg
   - ATSpectrograph
   - ATTCS
   - CatchupArchiver
+  - EFD
   - MTArchiver
   - PromptProcessing
+  - Scheduler
 sal::install::openslice_packages:
   - OpenSpliceDDS
 
@@ -22,5 +23,6 @@ sal::prerequisites::pkg_list:
   - boost-python-devel
   - cfitsio
   - gcc
+  - java-1.7.0-openjdk-devel
   - java-1.8.0-openjdk-headless
 
