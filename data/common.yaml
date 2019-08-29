@@ -10,7 +10,8 @@ sal::firewall::opensplice_subnets:
   'localhost': '127.0.0.1/32'
 
 sal::install::environment_file: '/opt/lsst/setup_SAL.env'
-sal::install::csc_version: '3.10.1-4.1.1'
+sal::install::csc_version: '3.10.0-4.1.1.el7'
+#sal::install::csc_version: '3.10.0_001-3.10.0.el7'
 sal::install::openslice_version: '6.9.0'
 
 sal::prerequisites::pip_packages:
