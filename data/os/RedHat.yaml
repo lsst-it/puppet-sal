@@ -13,6 +13,14 @@ sal::install::csc_packages:
   - MTArchiver
   - PromptProcessing
   - Scheduler
+  - ATDome
+  - DIMM
+  - CCArchiver
+  - CCCamera
+  - CCHeaderService
+  - DIMM
+  - Environment
+
 sal::install::openslice_packages:
   - OpenSpliceDDS
 
