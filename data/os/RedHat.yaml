@@ -7,7 +7,6 @@ sal::install::csc_packages:
   - ATMCS
   - ATPtg
   - ATSpectrograph
-  - ATTCS
   - CatchupArchiver
   - MTArchiver
   - PromptProcessing
