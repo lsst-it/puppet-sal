@@ -4,8 +4,10 @@ sal::install::csc_packages:
   - ATCamera
   - ATHeaderService
   - ATHexapod
+  - Hexapod
   - ATMCS
   - ATPtg
+  - MTPtg
   - ATSpectrograph
   - CatchupArchiver
   - MTArchiver
